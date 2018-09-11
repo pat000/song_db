@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Dashboard</title>
+    <title>Lyrics Application</title>
 
     <!-- Bootstrap core CSS-->
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">

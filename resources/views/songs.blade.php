@@ -12,11 +12,6 @@
         <div class="card mb-3">
                   <div class="card-header">
                       <i class="fas fa-table"></i> Songs
-
-                        <!-- <span class="">
-                             <button class="btn btn-primary float-right btn-edit" href="#" data-toggle="modal" data-target="#manageModal">Edit Song</button> | 
-                             <button class="btn btn-danger float-right btn-delete" style="margin-right: 5px">Delete Song</button>
-                        </span> -->
                          <button class="btn btn-info float-right btn-add" href="#" style="margin-right: 5px" data-toggle="modal" data-target="#manageModal">Add Song</button>
                   </div>
                   <div class="card-body">
@@ -25,6 +20,7 @@
                               <tr>
                                 <th>Title</th>
                                 <th>Artist</th>
+                                <th>Date Created</th>
                                 <th></th>
                               </tr>
                             </thead>
@@ -211,6 +207,21 @@ function songs_data() {
                           return '<td>'+ full.artist  +'</td>';
                       }
                   },
+                    {   
+                    "data":"created_at",
+                     "fnCreatedCell": function(nTd, sData, oData, iRow, iCol)
+                      {
+                          $(nTd).css('text-align', 'left');
+                          $(nTd).css('width', '20%');
+                          $(nTd).css('font-size', '14px');
+                          $(nTd).css('padding', '7px');
+                          $(nTd).css('padding-bottom', '3px');
+                          $(nTd).css('cursor', 'pointer');
+                      },
+                      "mRender": function( data, type, full ,meta) {
+                          return '<td>'+ formatDate(full.created_at)  +'</td>';
+                      }
+                  },
                    {   
                     "data":"id",
                      "fnCreatedCell": function(nTd, sData, oData, iRow, iCol)
@@ -239,6 +250,23 @@ function songs_data() {
             ]
          }
     );
+    }
+
+    function formatDate(date) {
+      date_ =  new Date(date);
+
+       var monthNames = [
+          "January", "February", "March",
+          "April", "May", "June", "July",
+          "August", "September", "October",
+          "November", "December"
+        ];
+
+        var day = date_.getDate();
+        var monthIndex = date_.getMonth();
+        var year = date_.getFullYear();
+
+        return day + ' ' + monthNames[monthIndex] + ',' + year;
     }
 
     var id;
