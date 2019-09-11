@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Songs;
+use App\Jobs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use DB;
 use Response;
-class SongsController extends Controller
+class JobsController extends Controller
 {
     public function __construct()
     {
@@ -21,7 +21,7 @@ class SongsController extends Controller
      */
     public function index()
     {
-        return view('songs');
+        return view('jobs');
     }
 
     /**
@@ -29,22 +29,20 @@ class SongsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addSongs(Request $request)
+    public function addJobs(Request $request)
     {
-        $data = new Songs;
+        $data = new Jobs;
         $data->title = $request->title;
-        $data->artist = $request->artist;
-        $data->lyrics = $request->lyrics;
+        $data->description = $request->description;
         $data->save ();
         return Response::json($respo = array('success' => 'success', 'dataId'=> $data->id));
     }
 
-    public function updateSongs(Request $request)
+    public function updateJobs(Request $request)
     {
-        $data = Songs::find($request->id); 
+        $data = Jobs::find($request->id); 
         $data->title = $request->title;
-        $data->artist = $request->artist;
-        $data->lyrics = $request->lyrics;
+        $data->description = $request->description;
         $data->save ();
         return Response::json($respo = array('success' => 'success', 'dataId'=> $data->id));
     }
@@ -57,11 +55,11 @@ class SongsController extends Controller
      */
     public function rawdata(Request $request)
     {
-        $songs = DB::table('songs')
-            ->select('songs.*')
+        $jobs = DB::table('jobs')
+            ->select('jobs.*')
             ->get();
 
-        return json_encode($songs);
+        return json_encode($jobs);
     }
 
     /**
@@ -70,8 +68,8 @@ class SongsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function deleteSong(Request $request)
+    public function deleteJob(Request $request)
     {
-         DB::table('songs')->where('id', '=', $request->id)->delete();
+         DB::table('jobs')->where('id', '=', $request->id)->delete();
     }
 }

@@ -5,22 +5,21 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="#">Data</a>
-          </li><li class="breadcrumb-item active">Songs</li>
+          </li><li class="breadcrumb-item active">Jobs</li>
           
         </ol>
         <!-- Icon Cards-->
         <div class="card mb-3">
                   <div class="card-header">
-                      <i class="fas fa-table"></i> Songs
-                         <button class="btn btn-info float-right btn-add" href="#" style="margin-right: 5px" data-toggle="modal" data-target="#manageModal">Add Song</button>
+                      <i class="fas fa-table"></i> Jobs
+                         <button class="btn btn-info float-right btn-add" href="#" style="margin-right: 5px" data-toggle="modal" data-target="#manageModal">Add Job</button>
                   </div>
                   <div class="card-body">
-                    <table class="table table-bordered table-hover" id="tblsongs" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-hover" id="tbljobs" width="100%" cellspacing="0">
                            <thead>
                               <tr>
-                                <th>Title</th>
-                                <th>Artist</th>
-                                <th>Date Created</th>
+                                <th>Job</th>
+                                <th>Description</th>
                                 <th></th>
                               </tr>
                             </thead>
@@ -45,27 +44,23 @@
             </button>
           </div>
           <div class="modal-body">
-              <form class="form-songs">
+              <form class="form-jobs">
                  {{csrf_field()}}
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" name="title" class="form-control" placeholder="Input Title" required="">
                     </div>
-                     <div class="form-group">
-                        <label>Artist</label>
-                        <input type="text" name="artist" class="form-control" placeholder="Input Artist" required="">
-                    </div>
 
                      <div class="form-group">
-                        <label>Lyrics</label>
-                        <textarea class="form-control" rows="10" name="lyrics" placeholder="lyrics" required=""></textarea>
+                        <label>Description</label>
+                        <textarea class="form-control" rows="5" name="description" placeholder="description" required=""></textarea>
                     </div>
                     <input type="text" name="id" id="id" hidden>
           </div>
-          <div class="modal-footer">
+           <div class="modal-footer">
                     <button class="btn btn-primary" type="submit">Save</button>
                 </form>
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -80,10 +75,10 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Select "OK" below if you are ready to delete your current song.</div>
+          <div class="modal-body">Select "OK" below if you are ready to delete your current job.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <button class="btn btn-danger" onclick="deleteSong()">OK</button>
+            <button class="btn btn-danger" onclick="deleteJob()">OK</button>
            
           </div>
         </div>
@@ -95,29 +90,27 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-    songs_data();
-    $('#tblsongs tbody').on( 'click', 'tr', function () {
+    jobs_data();
+    $('#tbljobs tbody').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
         else {
             sTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
-            // var  sTable = $('#tblsongs').DataTable();
+            // var  sTable = $('#tbljobs').DataTable();
             $("input[name=title]").val(sTable.rows('.selected').data()[0].title);
-            $("input[name=artist]").val(sTable.rows('.selected').data()[0].artist);
-            $("textarea[name=lyrics]").val(sTable.rows('.selected').data()[0].lyrics);
+            $("textarea[name=description]").val(sTable.rows('.selected').data()[0].description);
 
         }
         
     });
 });
   
-$(".form-songs").submit(function (e) {
+$(".form-jobs").submit(function (e) {
     e.preventDefault();
-    manageSongs();
+    managejobs();
 })
-
 
 var action = 'add';
 $(".btn-add").submit(function (e) {
@@ -125,11 +118,11 @@ $(".btn-add").submit(function (e) {
     action = 'add';
 })
 
-function manageSongs(){
+function managejobs(){
     if (action == 'add'){
-        url_ = "{{ route('songs.addSongs') }}";
+        url_ = "{{ route('jobs.addJobs') }}";
     }else {
-        url_ = "{{ route('songs.updateSongs') }}"
+        url_ = "{{ route('jobs.updateJobs') }}"
     }
     $.ajax({
         headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
@@ -139,11 +132,11 @@ function manageSongs(){
         cache: false,
         contentType: false,
         processData: false,
-        data:new FormData($(".form-songs")[0]),       
+        data:new FormData($(".form-jobs")[0]),       
         success: function(data){
             var obj = JSON.parse(data);
             $("#manageModal").modal('hide');
-            $('#tblsongs').DataTable().ajax.reload();
+            $('#tbljobs').DataTable().ajax.reload();
             action = 'add';
 
         },
@@ -155,16 +148,16 @@ function manageSongs(){
 } 
 
 var sTable
-//songs table 
-function songs_data() {
-         sTable =   $('#tblsongs').DataTable( {
+//jobs table 
+function jobs_data() {
+         sTable =   $('#tbljobs').DataTable( {
             "aProcessing": true,
             "aServerSide": true,
             "orderCellsTop": true,
             "bDeferRender": true, 
             "bDestroy": true,
             "ajax": {
-                "url": "{{route('songs.rawdata')}}",
+                "url": "{{route('jobs.rawdata')}}",
                 "dataSrc": ""
             },
             "columns": [
@@ -193,7 +186,7 @@ function songs_data() {
                       }
                   },
                     {   
-                    "data":"artist",
+                    "data":"description",
                      "fnCreatedCell": function(nTd, sData, oData, iRow, iCol)
                       {
                           $(nTd).css('text-align', 'left');
@@ -204,24 +197,10 @@ function songs_data() {
                           $(nTd).css('cursor', 'pointer');
                       },
                       "mRender": function( data, type, full ,meta) {
-                          return '<td>'+ full.artist  +'</td>';
+                          return '<td>'+ full.description  +'</td>';
                       }
                   },
-                    {   
-                    "data":"created_at",
-                     "fnCreatedCell": function(nTd, sData, oData, iRow, iCol)
-                      {
-                          $(nTd).css('text-align', 'left');
-                          $(nTd).css('width', '20%');
-                          $(nTd).css('font-size', '14px');
-                          $(nTd).css('padding', '7px');
-                          $(nTd).css('padding-bottom', '3px');
-                          $(nTd).css('cursor', 'pointer');
-                      },
-                      "mRender": function( data, type, full ,meta) {
-                          return '<td>'+ formatDate(full.created_at)  +'</td>';
-                      }
-                  },
+                 
                    {   
                     "data":"id",
                      "fnCreatedCell": function(nTd, sData, oData, iRow, iCol)
@@ -275,13 +254,13 @@ function songs_data() {
         $("#deleteModal").modal('show');
     } 
 
-    function deleteSong(){
+    function deleteJob(){
         var $this = $(this);
         var fd = new FormData; 
         fd.append('_token', $('input[name=_token]').val());
         fd.append('id', id);
         $.ajax({
-            url: "{{ route('songs.deleteSong') }}",
+            url: "{{ route('jobs.deleteJob') }}",
             type: 'POST', 
             dataType:'text',
             cache: false,
@@ -290,7 +269,7 @@ function songs_data() {
             data:fd,       
             success: function(data){
                 $("#deleteModal").modal('hide');
-                $('#tblsongs').DataTable().ajax.reload();
+                $('#tbljobs').DataTable().ajax.reload();
             },
             error: function(data){
               

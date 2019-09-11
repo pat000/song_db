@@ -14,11 +14,11 @@
               <div class="card text-white bg-primary o-hidden h-100">
                 <div class="card-body">
                   <div class="card-body-icon">
-                    <i class="fas fa-fw fa-music"></i>
+                    <i class="fas fa-fw fa-tasks"></i>
                   </div>
-                  <div class="mr-5">{{$songs}} total songs!</div>
+                  <div class="mr-5">{{$songs}} total Applications!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="{{route('songs')}}">
+                <a class="card-footer text-white clearfix small z-1" >
                   <span class="float-left">View Details</span>
                   <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -30,9 +30,9 @@
               <div class="card text-white bg-warning o-hidden h-100">
                 <div class="card-body">
                   <div class="card-body-icon">
-                    <i class="fas fa-fw fa-user"></i>
+                    <i class="fas fa-fw fa-list"></i>
                   </div>
-                  <div class="mr-5">{{$users}} user(s)!</div>
+                  <div class="mr-5">{{$users}} jobs!</div>
                 </div>
                 
               </div>

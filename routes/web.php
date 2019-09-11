@@ -11,20 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/songs', 'SongsController@index')->name('songs');
-Route::get('/songs/rawdata', 'SongsController@rawdata')->name('songs.rawdata');
-Route::post('/songs/addSongs', 'SongsController@addSongs')->name('songs.addSongs');
-Route::post('/songs/updateSongs', 'SongsController@updateSongs')->name('songs.updateSongs');
-Route::post('/songs/deleteSong', 'SongsController@deleteSong')->name('songs.deleteSong');
+Route::get('/jobs', 'JobsController@index')->name('jobs');
+Route::get('/jobs/rawdata', 'JobsController@rawdata')->name('jobs.rawdata');
+Route::post('/jobs/addJobs', 'JobsController@addJobs')->name('jobs.addJobs');
+Route::post('/jobs/updateJobs', 'JobsController@updateJobs')->name('jobs.updateJobs');
+Route::post('/jobs/deleteJob', 'JobsController@deleteJob')->name('jobs.deleteJob');
 
+
+Route::post('/applicants', 'ApplicationsController@applicants')->name('applicants');
 
 
 

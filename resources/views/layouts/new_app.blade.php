@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Lyrics Application</title>
+    <title>StunnerYPP Admin</title>
 
     <!-- Bootstrap core CSS-->
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
@@ -39,7 +39,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">Lyric Application</a>
+      <a class="navbar-brand mr-1" href="index.html">StunnerYPP Admin</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -84,11 +84,19 @@
             <span>Dashboard</span>
           </a>
         </li>
-         <li class="nav-item">
-          <a class="nav-link" href="songs">
-            <i class="fas fa-fw fa-list"></i>
-            <span>Songs</span></a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Applications</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(5px, 56px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <h6 class="dropdown-header">Setup:</h6>
+            <a class="dropdown-item" href="{{ route('applicants') }}">Applicants</a>
+            <a class="dropdown-item" href="{{ route('jobs') }}">List of Jobs</a>
+            
+          </div>
         </li>
+  
       </ul>
 
       <div id="content-wrapper">

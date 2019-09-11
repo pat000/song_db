@@ -4,13 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class songs extends Model
+class jobs extends Model
 {
-    protected $table = "songs";
+    protected $table = "jobs";
 	protected $fillable = [
 	      'title',
-	      'artist',
-	      'lyrics',
+	      'description',
 	     
 	];
 }
