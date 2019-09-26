@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<body class="bg-gradient-primary">
+<body class="bg-gradient-danger">
 
   <div class="container">
 
@@ -18,7 +18,7 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <h1 class="h4 text-gray-900 mb-4"><img src="https://stunnerypp.com/wp-content/uploads/2018/05/logo-1-300x138.png" style="width: 45%;"></h1>
                   </div>
                   <form method="POST" class="user" action="{{ route('login') }}">
                         @csrf
@@ -52,7 +52,7 @@
 
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                    <button type="submit" class="btn btn-danger btn-user btn-block">
                       Login
                     </button>
                     

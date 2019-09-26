@@ -19,7 +19,6 @@ class CreateApplicantsTable extends Migration
             $table->string('email');
             $table->string('resume');
             $table->integer('job_id')->unsigned()->index();
-            $table->foreign('job_id')->references('id')->on('jobs');
             $table->timestamps();
         });
     }

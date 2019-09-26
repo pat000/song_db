@@ -8,23 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>StunnerYPP Admin</title>
-
-     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
     <style type="text/css">
-          .selected{
-                background: #00a1de;
-                color: white;
-          }
-           .selected:hover{
-                background: #00a1de !important;
-                color: white;
-          }    
+        .selected{
+              background: #00a1de;
+              color: white;
+        }
+         .selected:hover{
+              background: #00a1de !important;
+              color: white;
+        }    
 
     </style>
   </head>
@@ -35,17 +33,20 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-fingerprint"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">StunnerYpp</div>
+
+        <div class="sidebar-brand-text mx-3">
+          <img src="https://stunnerypp.com/wp-content/uploads/2018/05/logo-1-300x138.png" style="width: 95%;">
+        </div>
       </a>
 
-      <!-- Divider -->
+      <!-- Divider --> 
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
@@ -115,7 +116,7 @@
                   <div class="input-group">
                     <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
+                      <button class="btn btn-danger" type="button">
                         <i class="fas fa-search fa-sm"></i>
                       </button>
                     </div>
@@ -191,7 +192,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="{{ url('/logout') }}">Logout</a>
+          <a class="btn btn-danger" href="{{ url('/logout') }}">Logout</a>
         </div>
       </div>
     </div>

@@ -28,7 +28,7 @@ class ApplicantsController extends Controller
         $applicants = Applicants::all();
         $data =[] ;
         foreach ($applicants as $key => $applicant) {
-            $data[] = ['name' => $applicant->name ,
+            $data[] = ['name' => $applicant->name , 'email' => $applicant->email ,
                      'job_title' => $applicant->job->title ,
                       'date_applied' => $applicant->created_at];
         }

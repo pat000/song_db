@@ -2,7 +2,7 @@
 
 @section('content')
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-danger">
 
   <div class="container">
 
@@ -14,7 +14,8 @@
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+
+                <h2 class="h4 text-gray-900 mb-2"><img src="https://stunnerypp.com/wp-content/uploads/2018/05/logo-1-300x138.png" style="width: 45%;"></h2>
               </div>
               <form method="POST" class="user" action="{{ route('register') }}">
                         @csrf
@@ -58,7 +59,7 @@
                             
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-user btn-block">
+                <button type="submit" class="btn btn-danger btn-user btn-block">
                   Register Account
                 </button>
                 

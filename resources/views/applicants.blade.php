@@ -188,7 +188,7 @@ function jobs_data() {
                       },
                       "mRender": function( data, type, full ,meta) {
                           
-                            return '<td>'+ full.name  +'</td>';
+                            return '<td>'+ full.name + '<br><small>'+full.email+'</small></td>';
                          
                       }
                   },
