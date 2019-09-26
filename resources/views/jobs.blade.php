@@ -1,6 +1,9 @@
 @extends('layouts.new_app')
 
 @section('content')
+
+  <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+
       <!-- Breadcrumbs-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -87,6 +90,10 @@
 
 @endsection
 @section('js_custom')
+
+<script src="{{ asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -153,7 +160,7 @@ function jobs_data() {
          sTable =   $('#tbljobs').DataTable( {
             "aProcessing": true,
             "aServerSide": true,
-            "orderCellsTop": true,
+            // "orderCellsTop": true,
             "bDeferRender": true, 
             "bDestroy": true,
             "ajax": {
@@ -167,7 +174,7 @@ function jobs_data() {
                      "fnCreatedCell": function(nTd, sData, oData, iRow, iCol)
                       {
                           $(nTd).css('text-align', 'left');
-                          $(nTd).css('width', '30%');
+                          $(nTd).css('width', '10%');
                           $(nTd).css('cursor', 'pointer');
                           $(nTd).css('padding', '3px');
                           $(nTd).css('padding-left', '8px');
@@ -178,11 +185,9 @@ function jobs_data() {
                           $(nTd).css('padding-top', '5px');
                       },
                       "mRender": function( data, type, full ,meta) {
-                          if ((full.title).length>=47) {
-                            return '<td>'+ (full.title).substr(0,47)+"...</td>";
-                          } else {
+                          
                             return '<td>'+ full.title  +'</td>';
-                          }
+                          
                       }
                   },
                     {   
@@ -190,14 +195,18 @@ function jobs_data() {
                      "fnCreatedCell": function(nTd, sData, oData, iRow, iCol)
                       {
                           $(nTd).css('text-align', 'left');
-                          $(nTd).css('width', '20%');
+                          $(nTd).css('width', '50%');
                           $(nTd).css('font-size', '14px');
                           $(nTd).css('padding', '7px');
                           $(nTd).css('padding-bottom', '3px');
                           $(nTd).css('cursor', 'pointer');
                       },
                       "mRender": function( data, type, full ,meta) {
-                          return '<td>'+ full.description  +'</td>';
+                          if ((full.description).length>=200) {
+                            return '<td>'+ (full.description).substr(0,200)+"...</td>";
+                          } else {
+                            return '<td>'+ full.description  +'</td>';
+                          }
                       }
                   },
                  

@@ -21,6 +21,12 @@ Route::post('/jobs/addJobs', 'JobsController@addJobs')->name('jobs.addJobs');
 Route::post('/jobs/updateJobs', 'JobsController@updateJobs')->name('jobs.updateJobs');
 Route::post('/jobs/deleteJob', 'JobsController@deleteJob')->name('jobs.deleteJob');
 
+Route::get('/applicants', 'ApplicantsController@index')->name('applicants');
+Route::get('/applicants/rawdata', 'ApplicantsController@rawdata')->name('applicants.rawdata');
+
+
+
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::post('/applicants', 'ApplicationsController@applicants')->name('applicants');
 

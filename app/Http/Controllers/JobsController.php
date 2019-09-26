@@ -55,9 +55,7 @@ class JobsController extends Controller
      */
     public function rawdata(Request $request)
     {
-        $jobs = DB::table('jobs')
-            ->select('jobs.*')
-            ->get();
+        $jobs = Jobs::orderBy('created_at', 'desc')->get();
 
         return json_encode($jobs);
     }

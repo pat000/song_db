@@ -12,4 +12,13 @@ class jobs extends Model
 	      'description',
 	     
 	];
+
+
+	// Relationships
+	public function applicants()
+	{
+	    return $this->hasMany('App\Applicants');
+	}
 }
+
+
