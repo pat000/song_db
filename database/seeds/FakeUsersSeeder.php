@@ -16,12 +16,9 @@ class FakeUsersSeeder extends Seeder {
 
     		$user = new User;
     	
-	    	$user->username = 'YPPadmin';
+	    	$user->email = 'info@stunnermedia.com';
 	    	$user->password = bcrypt('p@$$w0rdYPP');
-	    	$user->first_name = 'Admin';
-	    	$user->nick_name = 'Admin';
-	    	$user->admin = 1;
-	    	$user->active = 1;
+	    	$user->name = 'Admin';
 
 	    	$user->save();
 
