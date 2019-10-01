@@ -54,4 +54,13 @@ class HomeController extends Controller
         $data['applicants'] = Applicants::all()->pluck('title')->count();
         return view('home',$data);
     }
+
+
+    public function truncate() {
+        
+        Applicants::query()->truncate();
+        Jobs::query()->truncate();
+
+        return('truncated');
+    }
 }
