@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use DB;
 use Response;
+use Illuminate\Support\Str;
 class JobsController extends Controller
 {
     public function __construct()
@@ -34,6 +35,7 @@ class JobsController extends Controller
         $data = new Jobs;
         $data->title = $request->title;
         $data->description = $request->description;
+        $data->slug = Str::slug($request->title, '-');
         $data->save ();
         return Response::json($respo = array('success' => 'success', 'dataId'=> $data->id));
     }
@@ -43,6 +45,7 @@ class JobsController extends Controller
         $data = Jobs::find($request->id); 
         $data->title = $request->title;
         $data->description = $request->description;
+        $data->slug = Str::slug($request->title, '-');
         $data->save ();
         return Response::json($respo = array('success' => 'success', 'dataId'=> $data->id));
     }
