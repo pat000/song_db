@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Applicants;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ApplicantsController extends Controller
 {
@@ -25,11 +26,13 @@ class ApplicantsController extends Controller
 
     public function rawdata(Request $request)
     {
-        $applicants = Applicants::all();
+        $applicants = Applicants::orderBy('created_at','desc')->get();
         $data =[] ;
         foreach ($applicants as $key => $applicant) {
+
             $data[] = ['name' => $applicant->name , 'email' => $applicant->email ,
-                     'job_title' => $applicant->job->title ,
+                      'job_title' =>  $applicant->job->title ,
+                      'resume' => route('resume',[$applicant->email, $applicant->resume]),
                       'date_applied' => $applicant->created_at];
         }
         return json_encode($data);

@@ -29,3 +29,11 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::post('/applicants', 'ApplicationsController@applicants')->name('applicants');
 
 Route::get('/truncate', 'HomeController@truncate');
+
+Route::get('/file/{email}/{file_name}', function($email = null,$file_name = null)
+{
+    $path = storage_path().'/resume/'.$email.'/'.$file_name;
+    if (file_exists($path)) {
+        return response()->download($path);
+    }
+})->name('resume');

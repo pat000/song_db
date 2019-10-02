@@ -163,6 +163,7 @@ function jobs_data() {
             "orderCellsTop": true,
             "bDeferRender": true, 
             "bDestroy": true,
+            "order": [],
             "ajax": {
                 "url": "{{route('applicants.rawdata')}}",
                 "dataSrc": ""
@@ -204,7 +205,7 @@ function jobs_data() {
                           $(nTd).css('cursor', 'pointer');
                       },
                       "mRender": function( data, type, full ,meta) {
-                          return '<td>'+ full.job_title  +'</td>';
+                          return '<td>'+ full.job_title  +'<br><small><a href="'+full.resume+'">Resume</a></td>';
                       }
                   },
                  
@@ -231,8 +232,8 @@ function jobs_data() {
 
            ],"columnDefs": [
                     {
-                            // "targets": [ 10,11 ],
-                            // "visible": false,
+                            "targets": 0,
+                            "orderable": false,
                             // "searchable": false
                     },
             ]
