@@ -163,6 +163,7 @@ function jobs_data() {
             // "orderCellsTop": true,
             "bDeferRender": true, 
             "bDestroy": true,
+            "order": [],
             "ajax": {
                 "url": "{{route('jobs.rawdata')}}",
                 "dataSrc": ""
@@ -231,7 +232,8 @@ function jobs_data() {
 
            ],"columnDefs": [
                     {
-                            // "targets": [ 10,11 ],
+                            "targets": 0,
+                            "orderable": false,
                             // "visible": false,
                             // "searchable": false
                     },
